@@ -45,6 +45,10 @@ root
 
 ```
 wget -O splunk-9.2.2-d76edf6f0a15.x86_64.rpm "https://download.splunk.com/products/splunk/releases/9.2.2/linux/splunk-9.2.2-d76edf6f0a15.x86_64.rpm"
+
+
+====>>
+
 --2024-07-08 07:01:24--  https://download.splunk.com/products/splunk/releases/9.2.2/linux/splunk-9.2.2-d76edf6f0a15.x86_64.rpm
 Resolving download.splunk.com (download.splunk.com)... 18.154.227.97, 18.154.227.12, 18.154.227.35, ...
 Connecting to download.splunk.com (download.splunk.com)|18.154.227.97|:443... connected.
