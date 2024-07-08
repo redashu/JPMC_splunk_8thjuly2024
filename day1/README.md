@@ -214,3 +214,48 @@ Checking prerequisites...
 	Checking appserver port [127.0.0.1:8065]: open
 
 ```
+
+### splunk verify port details 
+
+```
+netstat -nlpt
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      2783/rpcbind        
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      3410/sshd           
+tcp        0      0 0.0.0.0:8089            0.0.0.0:*               LISTEN      2823/splunkd        
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      3226/master         
+tcp        0      0 0.0.0.0:8191            0.0.0.0:*               LISTEN      3053/mongod         
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      2823/splunkd        
+tcp        0      0 127.0.0.1:8065          0.0.0.0:*               LISTEN      3181/python3.7      
+tcp6       0      0 :::111                  :::*                    LISTEN      2783/rpcbind        
+tcp6       0      0 :::22                   :::*                    LISTEN      3410/sshd    
+```
+
+### to launch splunk server as docker contaienr 
+
+<img src="spc1.png">
+
+
+### make sure you have docker engine installed 
+
+```
+yum install docker -y  
+
+ systemctl enable --now docker 
+```
+
+### lets creating docker container for splunk enterprise server 
+
+```
+docker  run  -itd --name ashusplunk  -p  1234:8000  -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=Redhat@12345"  splunk/splunk:latest
+```
+
+### checking container status
+
+```
+docker  ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS                            PORTS                                                                                              NAMES
+f4f046632b0b   splunk/splunk:latest   "/sbin/entrypoint.sh…"   9 seconds ago   Up 3 seconds (health: starting)   8065/tcp, 8088-8089/tcp, 8191/tcp, 9887/tcp, 9997/tcp, 0.0.0.0:1234->8000/tcp, :::1234->8000/tcp   ashusplunk
+```
+
