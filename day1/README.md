@@ -301,3 +301,48 @@ index=*
 index="security"
 ```
 
+### splunk Distributed setup 
+
+<img src="setup1.png">
+
+### setup some sample app 
+
+```
+yum  install  git -y 
+
+====>
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Package git-2.40.1-1.amzn2.0.3.x86_64 already installed and latest version
+Nothing to do
+
+====>
+[root@ip-172-31-93-203 ~]# git clone   https://github.com/schoolofdevops/html-sample-app.git
+Cloning into 'html-sample-app'...
+remote: Enumerating objects: 74, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 74 (delta 0), reused 0 (delta 0), pack-reused 71
+Receiving objects: 100% (74/74), 1.38 MiB | 35.34 MiB/s, done.
+Resolving deltas: 100% (5/5), done.
+[root@ip-172-31-93-203 ~]# ls
+html-sample-app
+[root@ip-172-31-93-203 ~]# 
+
+
+
+
+```
+
+### to Host this webapp use apache httpd server 
+
+```
+yum install httpd -y 
+==>
+cp -rf html-sample-app/*   /var/www/html/
+
+===>
+systemctl  enable --now httpd
+```
+
+
+
