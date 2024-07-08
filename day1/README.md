@@ -344,5 +344,114 @@ cp -rf html-sample-app/*   /var/www/html/
 systemctl  enable --now httpd
 ```
 
+### type Splunk forwarder 
+
+<img src="splunkf1.png">
+
+### Downloading and setup Universal forwarder 
+
+```
+wget -O splunkforwarder-9.2.2-d76edf6f0a15.x86_64.rpm "https://download.splunk.com/products/universalforwarder/releases/9.2.2/linux/splunkforwarder-9.2.2-d76edf6f0a15.x86_64.rpm"
+
+====>>
+ls
+html-sample-app  splunkforwarder-9.2.2-d76edf6f0a15.x86_64.rpm
+
+
+[root@ip-172-31-93-203 ~]# rpm -ivh splunkforwarder-9.2.2-d76edf6f0a15.x86_64.rpm 
+warning: splunkforwarder-9.2.2-d76edf6f0a15.x86_64.rpm: Header V4 RSA/SHA256 Signature, key ID b3cd4420: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:splunkforwarder-9.2.2-d76edf6f0a1################################# [100%]
+complete
+[root@ip-172-31-93-203 ~]# 
+
+===> default location of splunk forwarder 
+
+ cd  /opt/splunkforwarder/
+[root@ip-172-31-93-203 splunkforwarder]# ls
+bin    copyright.txt  ftr      lib               LICENSE.txt  README-splunk.txt  splunkforwarder-9.2.2-d76edf6f0a15-linux-2.6-x86_64-manifest  uf
+cmake  etc            include  license-eula.txt  openssl      share              swidtag
+[root@ip-172-31-93-203 splunkforwarder]# 
+
+
+
+```
+
+### starting splunk forwarder 
+
+```
+/opt/splunkforwarder/bin/splunk   start  --accept-license 
+Warning: Attempting to revert the SPLUNK_HOME ownership
+Warning: Executing "chown -R splunkfwd:splunkfwd /opt/splunkforwarder"
+
+This appears to be your first time running this version of Splunk.
+
+Splunk software must create an administrator account during startup. Otherwise, you cannot log in.
+Create credentials for the administrator account.
+Characters do not appear on the screen when you type in credentials.
+
+Please enter an administrator username: admin
+Password must contain at least:
+   * 8 total printable ASCII character(s).
+Please enter a new password: 
+Please confirm new password: 
+Creating unit file...
+```
+
+### checking status 
+
+```
+/opt/splunkforwarder/bin/splunk  status
+Warning: Attempting to revert the SPLUNK_HOME ownership
+Warning: Executing "chown -R splunkfwd:splunkfwd /opt/splunkforwarder"
+splunkd is running (PID: 1593).
+splunk helpers are running (PIDs: 1628).
+[root@ip-172-31-93-203 ~]# 
+
+
+```
+
+### adding indexer details to forwarder server 
+
+```
+ /opt/splunkforwarder/bin/splunk   add  forward-server   54.161.68.44:9997
+
+ ====>>
+
+
+ /opt/splunkforwarder/bin/splunk   list forward-server
+Warning: Attempting to revert the SPLUNK_HOME ownership
+Warning: Executing "chown -R splunkfwd:splunkfwd /opt/splunkforwarder"
+Active forwards:
+        None
+Configured but inactive forwards:
+        54.161.68.44:9997
+
+
+```
+
+### added data to splunk monitoring 
+
+
+```
+/opt/splunkforwarder/bin/splunk  add monitor   /var/log/httpd/
+Warning: Attempting to revert the SPLUNK_HOME ownership
+Warning: Executing "chown -R splunkfwd:splunkfwd /opt/splunkforwarder"
+Added monitor of '/var/log/httpd'.
+```
+
+### restarting splunk forwarder service
+
+```
+ /opt/splunkforwarder/bin/splunk   restart
+Warning: Attempting to revert the SPLUNK_HOME ownership
+Warning: Executing "chown -R splunkfwd:splunkfwd /opt/splunkforwarder"
+Stopping splunkd...
+Shutting down.  Please wait, as this may take a few minutes.
+
+
+
+```
 
 
