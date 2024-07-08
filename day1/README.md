@@ -191,3 +191,26 @@ Generating RSA private key, 2048 bit long modulu
 <img src="console1.png">
 
 ### splunk IP:8000 -- http://IP:8000 
+
+### stopping and starting splunk service 
+
+```
+ /opt/splunk/bin/splunk  stop
+Stopping splunkd...
+Shutting down.  Please wait, as this may take a few minutes.
+..                                                         [  OK  ]
+Stopping splunk helpers...
+                                                           [  OK  ]
+Done.
+
+
+[root@ip-172-31-60-129 splunk]# /opt/splunk/bin/splunk  start
+
+Splunk> The Notorious B.I.G. D.A.T.A.
+
+Checking prerequisites...
+	Checking http port [8000]: open
+	Checking mgmt port [8089]: open
+	Checking appserver port [127.0.0.1:8065]: open
+
+```
