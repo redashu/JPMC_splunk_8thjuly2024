@@ -259,3 +259,45 @@ CONTAINER ID   IMAGE                  COMMAND                  CREATED         S
 f4f046632b0b   splunk/splunk:latest   "/sbin/entrypoint.sh…"   9 seconds ago   Up 3 seconds (health: starting)   8065/tcp, 8088-8089/tcp, 8191/tcp, 9887/tcp, 9997/tcp, 0.0.0.0:1234->8000/tcp, :::1234->8000/tcp   ashusplunk
 ```
 
+### lets stop contaienr and start original system process
+
+```
+ 48  docker  stop ashusplunk
+   49  docker  start ashusplunk
+   50  docker  ps
+   51  docker  stop  ashusplunk 
+   52  history 
+[root@ip-172-31-60-129 splunk]# /opt/splunk/bin/splunk  start
+
+Splunk> The Notorious B.I.G. D.A.T.A.
+
+Checking prerequisites...
+
+```
+
+## Indexer and indexes 
+
+### Note : default index in splunk server is main 
+<img src="main.png">
+
+### creating index
+
+
+### Understanding search process
+
+<img src="SPL.png">
+
+## SPL commands 
+
+### searching in all indexed 
+
+```
+index=*
+```
+
+### searching on particular index 
+
+```
+index="security"
+```
+
