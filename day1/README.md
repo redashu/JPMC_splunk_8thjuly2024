@@ -92,3 +92,102 @@ splunk-9.2.2-d76edf6f0a15.x86_64
 
 
 ```
+
+### Understanding configuration files of splunk server
+
+```
+cd  /opt/splunk/
+[root@ip-172-31-60-129 splunk]# ls
+LICENSE.txt        cmake          ftr      license-eula.txt  quarantined_files                                    swidtag
+README-splunk.txt  copyright.txt  include  openssl           share
+bin                etc            lib      opt               splunk-9.2.2-d76edf6f0a15-linux-2.6-x86_64-manifest
+
+
+```
+
+### configuration files 
+
+```
+/opt/splunk/
+
+ cd  etc/
+[root@ip-172-31-60-129 etc]# ls
+anonymizer     deployment-apps      log-btool.cfg          log-utility.cfg  myinstall        searchLanguage.xml          splunk.version
+apps           disabled-apps        log-cmdline-debug.cfg  log.cfg          openldap         shcluster                   system
+auth           findlogs.ini         log-cmdline.cfg        manager-apps     packages         splunk-enttrial.lic         users
+copyright.txt  init.d               log-debug.cfg          master-apps      packagetype      splunk-launch.conf
+datetime.xml   log-btool-debug.cfg  log-searchprocess.cfg  modules          prettyprint.xsl  splunk-launch.conf.default
+
+
+[root@ip-172-31-60-129 etc]# 
+
+===>> verify splunk version 
+
+cat  splunk.version 
+VERSION=9.2.2
+BUILD=d76edf6f0a15
+PRODUCT=splunk
+PLATFORM=Linux-x86_64
+
+
+====> splunk main confi file is 
+
+splunk-launch.conf
+
+
+```
+
+### a visual of splunk on Windows 
+
+<img src="winsp.png">
+
+### all Splunk bin commands are available at  bin directory 
+
+```
+ pwd
+/opt/splunk/etc
+[root@ip-172-31-60-129 etc]# cd  ..
+
+[root@ip-172-31-60-129 splunk]# ls
+LICENSE.txt        cmake          ftr      license-eula.txt  quarantined_files                                    swidtag
+README-splunk.txt  copyright.txt  include  openssl           share
+bin                etc            lib      opt               splunk-9.2.2-d76edf6f0a15-linux-2.6-x86_64-manifest
+
+
+[root@ip-172-31-60-129 splunk]# ls  bin/
+2to3-3.7                    genSignedServerCert.py         node                  pydoc3.7                        slim
+ColdStorageArchiver.py      genSignedServerCert.sh         openssl               python                          spl-lang-server-sockets
+ColdStorageArchiver_GCP.py  genWebCert.py                  parse_xml_buckets.py  python3                         spl2-orchestrator
+S3benchmark                 genWebCert.sh                  pcre2-config          python3.7                       splunk
+bloom                       idle3                          pcregextest           python3.7m                      splunk-optimize
+bottle.py                   idle3.7                        pid_check.sh          pyvenv                          splunk-optimize-lex
+btool                       importtool         
+```
+
+### starting splunk with license acceptance 
+
+```
+/opt/splunk/bin/splunk  start  --accept-license
+
+
+This appears to be your first time running this version of Splunk.
+
+Splunk software must create an administrator account during startup. Otherwise, you cannot log in.
+Create credentials for the administrator account.
+Characters do not appear on the screen when you type in credentials.
+
+Please enter an administrator username: ashuadmin
+Password must contain at least:
+   * 8 total printable ASCII character(s).
+Please enter a new password: 
+Please confirm new password: 
+Copying '/opt/splunk/etc/openldap/ldap.conf.default' to '/opt/splunk/etc/openldap/ldap.conf'.
+Generating RSA private key, 2048 bit long modulu
+```
+
+
+### Now try to access splunk management console 
+
+<img src="console1.png">
+
+### splunk IP:8000 -- http://IP:8000 
