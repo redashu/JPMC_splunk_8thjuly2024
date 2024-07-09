@@ -47,4 +47,20 @@ index="main" host="ip-172-31-93-203.ec2.internal"
 
 <img src="splway.png">
 
+### stats
+
+```
+index="main" host="ip-172-31-93-203.ec2.internal" | stats count by clientip
+```
+### using OR operator 
+
+```
+index="main" OR index="weblogs"  | stats count by clientip
+```
+
+### using stats with where 
+
+```
+index="main" host="ip-172-31-93-203.ec2.internal"| stats count by clientip | where count > 20
+```
 
