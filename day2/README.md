@@ -64,3 +64,26 @@ index="main" OR index="weblogs"  | stats count by clientip
 index="main" host="ip-172-31-93-203.ec2.internal"| stats count by clientip | where count > 20
 ```
 
+### http status code 
+
+<img src="status.png">
+
+### try with status code 
+
+```
+index="main" host="ip-172-31-93-203.ec2.internal" status=4* | stats count by clientip | where count <= 5
+```
+
+### using specific http code 
+
+```
+index="main" host="ip-172-31-93-203.ec2.internal" (status=404 OR status=408) | stats count by clientip | where count <= 5
+```
+
+### understanding regex for splunk 
+
+<img src="reg1.png">
+
+
+
+
