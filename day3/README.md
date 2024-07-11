@@ -60,3 +60,8 @@ disabled = false
 
 
 ```
+
+### splunk dashboard is all about python libs -- 
+
+<img src="pylib.png">
+
