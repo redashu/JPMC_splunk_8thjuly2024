@@ -65,3 +65,62 @@ disabled = false
 
 <img src="pylib.png">
 
+### task to  complete dashbaord creation 
+
+<img src="dasht.png">
+
+### alerts and notifications in Splunk Enterprise engine 
+
+<img src="alert.png">
+
+
+## Datastore and backup in Splunk 
+
+### understading Indexer process 
+
+<img src="index1.png">
+
+### more closure look 
+
+<img src="look1.png">
+
+### understnading index in general 
+
+<img src="store1.png">
+
+### bucket location 
+
+```
+root@ip-172-31-60-129 splunk]# pwd
+/opt/splunk/var/lib/splunk
+[root@ip-172-31-60-129 splunk]# ls
+audit           _configtracker.dat  _dsphonehome  _internal.dat       kvstore       _metrics_rollup    security.dat    weblogs
+_audit.dat      defaultdb           fishbucket    _internaldb         main.dat      modinputs          summarydb       weblogs.dat
+authDb          _dsappevent         hashDb        _introspection      _metrics      persistentstorage  _telemetry
+_configtracker  _dsclient           historydb     _introspection.dat  _metrics.dat  security           _telemetry.dat
+[root@ip-172-31-60-129 splunk]# cd weblogs/
+[root@ip-172-31-60-129 weblogs]# ls
+colddb  datamodel_summary  db  thaweddb
+[root@ip-172-31-60-129 weblogs]# cd db/
+[root@ip-172-31-60-129 db]# ls
+CreationTime  db_1617819736_1617214936_0  GlobalMetaData
+[root@ip-172-31-60-129 db]# cd ..
+[root@ip-172-31-60-129 weblogs]# ls
+colddb  datamodel_summary  db  thaweddb
+[root@ip-172-31-60-129 weblogs]# cd ..
+[root@ip-172-31-60-129 splunk]# ls
+audit           _configtracker.dat  _dsphonehome  _internal.dat       kvstore       _metrics_rollup    security.dat    weblogs
+_audit.dat      defaultdb           fishbucket    _internaldb         main.dat      modinputs          summarydb       weblogs.dat
+authDb          _dsappevent         hashDb        _introspection      _metrics      persistentstorage  _telemetry
+_configtracker  _dsclient           historydb     _introspection.dat  _metrics.dat  security           _telemetry.dat
+[root@ip-172-31-60-129 splunk]# du -sh weblogs
+6.2M    weblogs
+[root@ip-172-31-60-129 splunk]# 
+
+```
+
+
+
+
+
+
