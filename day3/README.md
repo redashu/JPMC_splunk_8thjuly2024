@@ -119,6 +119,30 @@ _configtracker  _dsclient           historydb     _introspection.dat  _metrics.d
 
 ```
 
+## setup of splunk server on Kubernetes 
+
+### on kuberneres client 
+
+
+```
+
+kubectl   version --client 
+Client Version: v1.28.8-eks-ae9a62a
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+[ec2-user@ip-172-31-82-122 ~]$ 
+[ec2-user@ip-172-31-82-122 ~]$ 
+
+
+[ec2-user@ip-172-31-82-122 ~]$ kubectl    get  nodes
+NAME                                STATUS   ROLES   AGE    VERSION
+aks-agentpool-84774012-vmss000000   Ready    agent   7h5m   v1.28.9
+aks-agentpool-84774012-vmss000001   Ready    agent   7h5m   v1.28.9
+[ec2-user@ip-172-31-82-122 ~]$ 
+
+```
+
+
+
 
 
 
