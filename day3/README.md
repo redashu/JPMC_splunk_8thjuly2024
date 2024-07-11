@@ -141,6 +141,33 @@ aks-agentpool-84774012-vmss000001   Ready    agent   7h5m   v1.28.9
 
 ```
 
+## stesp 
+
+### creating namespace 
+
+```
+kubectl   get  ns
+NAME              STATUS   AGE
+default           Active   7h12m
+kube-node-lease   Active   7h12m
+kube-public       Active   7h12m
+kube-system       Active   7h12m
+[ec2-user@ip-172-31-82-122 ~]$ 
+[ec2-user@ip-172-31-82-122 ~]$ kubectl    create   ns   ashu-splunk 
+namespace/ashu-splunk created
+[ec2-user@ip-172-31-82-122 ~]$ kubectl   get  ns
+NAME              STATUS   AGE
+ashu-splunk       Active   2s
+default           Active   7h12m
+kube-node-lease   Active   7h12m
+kube-public       Active   7h12m
+kube-system       Active   7h12m
+[ec2-user@ip-172-31-82-122 ~]$ 
+
+```
+
+### creating deployment file 
+
 
 
 
