@@ -168,6 +168,79 @@ kube-system       Active   7h12m
 
 ### creating deployment file 
 
+```
+kubectl   create  deployment  ashu-spmaster  --image=splunk/splunk:latest --port 8000 --namespace ashu-splunk  --dry-run=c
+lient -o yaml >ashu.yaml
+```
+
+### modify splunk manifest to update port and env 
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashu-spmaster
+  name: ashu-spmaster
+  namespace: ashu-splunk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashu-spmaster
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashu-spmaster
+    spec:
+      containers:
+      - image: splunk/splunk:latest
+        name: splunk
+        env: 
+        - name: SPLUNK_START_ARGS
+          value: --accept-license
+        - name: SPLUNK_PASSWORD
+          value: Redhat@12345
+        ports:
+        - containerPort: 8000 # console 
+        - containerPort: 9997 # receiver 
+        - containerPort: 8089 # splunk API 
+        - containerPort: 8088 # splunk connection 
+        resources: {}
+status: {}
+```
+
+### creating deploying 
+
+```
+ec2-user@ip-172-31-82-122 ~]$ kubectl   create  -f  ashu.yaml 
+deployment.apps/ashu-spmaster created
+[ec2-user@ip-172-31-82-122 ~]$ 
+[ec2-user@ip-172-31-82-122 ~]$ kubectl   get  deploy -n ashu-splunk 
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-spmaster   0/1     1            0           7s
+[ec2-user@ip-172-31-82-122 ~]$ 
+[ec2-user@ip-172-31-82-122 ~]$ kubectl   get  pod -n ashu-splunk 
+NAME                            READY   STATUS              RESTARTS   AGE
+ashu-spmaster-7866cccf4-sbfjk   0/1     ContainerCreating   0          14s
+[ec2-user@ip-172-31-82-122 ~]$ 
+```
+### creating LoadBalancer service to expose splunk webUI 
+
+```
+ kubectl   get  deploy -n ashu-splunk 
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-spmaster   1/1     1            1           3m4s
+[ec2-user@ip-172-31-82-122 ~]$ 
+
+
+[ec2-user@ip-172-31-82-122 ~]$ kubectl  expose deployment  ashu-spmaster  --type LoadBalancer --port 80 --target-port 8000 --name ashulb --namespace ashu-splunk 
+service/ashulb exposed
+[ec2-user@ip-172-31-82-122 ~]$ 
+```
 
 
 
